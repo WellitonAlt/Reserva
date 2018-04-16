@@ -2,6 +2,7 @@ package reserva.dao;
 
 import reserva.Hotel;
 import reserva.Promocao;
+import reserva.Site;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,15 +14,18 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 public class PromocaoDAO {
-
-    private final static String CRIAR_PROMOCAO_SQL = "insert into Palpite"
-            + " (url, preco, dataInicial, dataFinal, hotel)"
+ 
+    private final static String CRIAR_PROMOCAO_SQL = "insert into Promocao"
+            + " (preco, dataInicial, dataFinal, site, hotel)"
             + " values (?,?,?,?,?)";
 
     private final static String LISTAR_PROMOCAO_SQL = "select"
             + " p.id as promocaoId, p.url, p.preco, p.dataInicial, p.dataFinal"
             + " h.id as hotelId, h.nome, h.cnpj, h.cidade"
-            + " from Promocao p inner join Hotel h on p.hotel = h.id";
+            + " s.id as siteId, s.nome, s.telefone"
+            + " from Promocao p"
+            + " inner join Hotel h on p.hotel = h.id"
+            + " inner join Site s on p.site = s.id";
 
         DataSource dataSource;
 
@@ -32,11 +36,12 @@ public class PromocaoDAO {
     public Promocao gravarPromocao(Promocao promocao) throws SQLException, NamingException {
         try (Connection con = dataSource.getConnection();
                 PreparedStatement ps = con.prepareStatement(CRIAR_PROMOCAO_SQL, Statement.RETURN_GENERATED_KEYS);) {
-            ps.setString(1, promocao.getUrl());
-            ps.setFloat(2, promocao.getPreço());
-            ps.setDate(3, new java.sql.Date(promocao.getDataInicial().getTime()));
-            ps.setDate(4, new java.sql.Date(promocao.getDataFinal().getTime()));
-           // ps.setInt(5, promocao.getHotel().getId());
+            
+            ps.setFloat(1, promocao.getPreço());
+            ps.setDate(2, new java.sql.Date(promocao.getDataInicial().getTime()));
+            ps.setDate(3, new java.sql.Date(promocao.getDataFinal().getTime()));
+            ps.setInt(4, promocao.getSite());
+            ps.setInt(5, promocao.getHotel());
             ps.execute();
 
             try (ResultSet rs = ps.getGeneratedKeys()) {
@@ -55,19 +60,15 @@ public class PromocaoDAO {
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
                     Promocao promocao = new Promocao();
-                    Hotel hotel = new Hotel();
+                    
                     //(url, preco, dataInicial, dataFinal, hotel)
                     promocao.setId(rs.getInt("promocaoId"));
-                    promocao.setUrl(rs.getString("url"));
+                    promocao.setSite(rs.getInt("siteID"));
+                    promocao.setHotel(rs.getInt("hotelId"));
+                    promocao.setPreço(rs.getFloat("preco"));
                     promocao.setDataInicial(rs.getDate("dataInicial"));
                     promocao.setDataFinal(rs.getDate("dataInicial"));
                     
-                    hotel.setId(rs.getInt("HotelId"));
-                    hotel.setCNPJ(rs.getString("cnpj"));
-                    hotel.setNome(rs.getString("nome"));
-                    hotel.setCidade(rs.getString("cidade"));
-                    
-                    //promocao.setHotel(hotel);
                     ret.add(promocao);
                 }
             }

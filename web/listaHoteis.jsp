@@ -10,7 +10,6 @@
         <h1>Hoteis</h1>
         <h3>Menu:</h3>
         <a href="index.jsp">Pagina Inicial</a><br/>
-        <a href="ListaHoteisServlet?cidade=">Ver Hotéis</a><br/>
         <a href="#">Area dos Hotéis</a><br/>
         <a href="#">Area dos Site de Reserva</a><br/>
         <a href="loginAdm.jsp">Area de Administração</a><br/>

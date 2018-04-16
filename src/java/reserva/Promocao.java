@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Promocao {
     private int id;
-    private String url, CNPJ_hotel;
+    private int site, hotel;
     private float preço;
     private Date dataInicial, dataFinal;
 
@@ -12,9 +12,13 @@ public class Promocao {
 
     public void setId(int id) { this.id = id; }
 
-    public String getUrl() { return url; }
+    public int getSite() { return site; }
 
-    public void setUrl(String url) { this.url = url; }
+    public void setSite(int id_site) { this.site = id_site; }
+
+    public int getHotel() { return hotel; }
+
+    public void setHotel(int CNPJ_hotel) { this.hotel = CNPJ_hotel; }
 
     public float getPreço() { return preço; }
 
@@ -26,10 +30,5 @@ public class Promocao {
 
     public Date getDataFinal() { return dataFinal; }
 
-    public void setDataFinal(Date dataFinal) { this.dataFinal = dataFinal; }  
-
-    public String getCNPJ_hotel() { return CNPJ_hotel; }
-
-    public void setCNPJ_hotel(String CNPJ_hotel) { this.CNPJ_hotel = CNPJ_hotel; }
-    
+    public void setDataFinal(Date dataFinal) { this.dataFinal = dataFinal; }
 }
