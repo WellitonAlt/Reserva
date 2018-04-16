@@ -7,6 +7,12 @@
         <title>TreisVaga</title>   
     </head>
     <body>
+        <h1>Login ADM</h1>
+        <h3>Menu:</h3>
+        <a href="index.jsp">Pagina Inicial</a><br/>
+        <a href="areaAdm.jsp">Area de Administrador</a><br/>
+        <a href="login.jsp">Sair</a><br/>        
+        <hr>
         <c:if test="${!empty requestScope.mensagens}">
             <ul class="erro">
                 <c:forEach items="${requestScope.mensagens}" var="mensagem">
@@ -14,16 +20,12 @@
                 </c:forEach>
             </ul>
         </c:if>
+        private String url, senha, nome, telefone;    
         
-        private String url, CNPJ;
-    private float preço;
-    private Date dataInicial, dataFinal;
-    private Hotel hotel;
-
         <form action="" method="post">
             Digite os dados do Site de Resserva:<br/>
-            CNPJ: <input name="cnpj" type="text" value="${sessionScope.novoSite.cnpj}" /><br/>
-            url: <input name="url" type="text" value="${sessionScope.novoSite.url}" /><br/>
+            URL: <input name="url" type="text" value="${sessionScope.Site.url}" /><br/>
+            Senha: <input name="senha" type="password" value="" /><br/>
             preço: <input name="preco" type="text" value="${sessionScope.novoSite.preco}" /><br/>
             Data de nascimento: <input name="dataDeNascimento" type="text" value="${sessionScope.novoPalpite.dataDeNascimento}" /><br/>
             Campeão: <input name="campeao" type="text" value="${sessionScope.novoPalpite.campeao}" /><br/>

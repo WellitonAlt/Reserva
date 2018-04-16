@@ -9,7 +9,7 @@
     <body>
         <h1>Area de Administração </h1>
         <h3>Menu:</h3>
-        <a href="#">Cadastro Site de Reserva</a><br/>        
+        <a href="cadastroSite.jsp">Cadastro Site de Reserva</a><br/>        
         <a href="#">Cadastro Hotel</a><br/>
         <a href="index.jsp">Sair</a><br/>
         <hr>
