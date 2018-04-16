@@ -20,16 +20,13 @@
                 </c:forEach>
             </ul>
         </c:if>
-        private String url, senha, nome, telefone;    
-        
         <form action="" method="post">
-            Digite os dados do Site de Resserva:<br/>
+            Digite os dados do Site de Resserva:<br/><br/>
             URL: <input name="url" type="text" value="${sessionScope.Site.url}" /><br/>
             Senha: <input name="senha" type="password" value="" /><br/>
-            preço: <input name="preco" type="text" value="${sessionScope.novoSite.preco}" /><br/>
-            Data de nascimento: <input name="dataDeNascimento" type="text" value="${sessionScope.novoPalpite.dataDeNascimento}" /><br/>
-            Campeão: <input name="campeao" type="text" value="${sessionScope.novoPalpite.campeao}" /><br/>
-            Vice: <input name="vice" type="text" value="${sessionScope.novoPalpite.vice}" /><br/>
+            Nome: <input name="nome" type="text" value="${sessionScope.Site.nome}" /><br/>
+            Telefone: <input name="telefone" type="text" value="${sessionScope.Site.Telefone}" /><br/>
+            
             <input type="submit" value="Enviar"/>
         </form>
     </body>
