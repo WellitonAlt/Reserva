@@ -11,14 +11,16 @@
         <h3>Menu:</h3>
         <a href="index.jsp">Pagina Inicial</a><br/>
         <a href="ListaHoteisServlet?cidade=">Ver Hotéis</a><br/>        
-        <a href="#">Area dos Hotéis</a><br/>
-        <a href="#">Area dos Site de Reserva</a><br/>
-        <a href="#">Area de Administração</a><br/>
         <hr>
         <c:if test="${!empty requestScope.mensagem}">
             <p>${requestScope.mensagem}</p>
         </c:if>
-        <form action="LoginAdmServlet" method="post">
+        <form action="LoginServlet" method="post">
+            Escolha o tipo de login: <br/>
+            <input type="radio" name="tipo" value="adm" checked> Administrador <br/>
+            <input type="radio" name="tipo" value="hotel"> Hotel <br />
+            <input type="radio" name="tipo" value="site" > Site <br/>
+            <br/>
             Usuario:
             <input name="usuario" type="text" value="${sessionScope.login.usuario}" /> <br />
             Senha:
