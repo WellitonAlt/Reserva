@@ -13,5 +13,7 @@
         <a href="#">Area dos Site de Reserva</a><br/>
         <a href="loginAdm.jsp">Area de Administração</a><br/>
         <hr>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <center>Criado com <i>Feijões em rede</i><br>Movido com <i>GatoTom</i></center>
     </body>
 </html>
