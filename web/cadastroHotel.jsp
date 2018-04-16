@@ -25,7 +25,7 @@
             Senha:<input name="senha" type="text" value="" />
             Nome:<input name="nome" type="text" value="" />
             Cidade:<input name="cidade" type="text" value="" />
-            <input type="submit" value="Cadastrar"/>
+            <input type="submit" value="Cadastrari"/>
         </form>
     </body>
 </html>
