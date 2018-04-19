@@ -16,9 +16,8 @@
         <h1>Hoteis</h1>
         <h3>Menu:</h3>
         <a href="index.jsp">Pagina Inicial</a><br/>
-        <a href="#">Area dos Hotéis</a><br/>
-        <a href="#">Area dos Site de Reserva</a><br/>
-        <a href="loginAdm.jsp">Area de Administração</a><br/>
+        <a href="areaAdm.jsp">Area de Administrador</a><br/>
+        <a href="login.jsp">Sair</a><br/> 
         <hr>
         <form action="NovoHotelForm" method="post">
             CNPJ:<input name="cnpj" type="text" value="" />
