@@ -22,11 +22,11 @@
         </c:if>
         <form action="GravarSiteServlet" method="post">
             Digite os dados do Site de Resserva:<br/><br/>
-            URL: <input name="url" type="text" value="${sessionScope.Site.url}" /><br/>
+            URL: <input name="url" type="text" value="${sessionScope.Site.url}"/><br/>
             Senha: <input name="senha" type="password" value="" /><br/>
             Nome: <input name="nome" type="text" value="${sessionScope.Site.nome}" /><br/>
             Telefone: <input name="telefone" type="text" value="${sessionScope.Site.Telefone}" /><br/>            
-            <input type="submit" value="Enviar"/>
+            <input type="submit" value="Cadastrar"/>
         </form>
     </body>
 </html>

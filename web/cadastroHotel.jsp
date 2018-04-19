@@ -19,12 +19,19 @@
         <a href="areaAdm.jsp">Area de Administrador</a><br/>
         <a href="login.jsp">Sair</a><br/> 
         <hr>
-        <form action="NovoHotelForm" method="post">
-            CNPJ:<input name="cnpj" type="text" value="" />
-            Senha:<input name="senha" type="text" value="" />
-            Nome:<input name="nome" type="text" value="" />
-            Cidade:<input name="cidade" type="text" value="" />
-            <input type="submit" value="Cadastrari"/>
+        <c:if test="${!empty requestScope.mensagens}">
+            <ul class="erro">
+                <c:forEach items="${requestScope.mensagens}" var="mensagem">
+                    <li>${mensagem}</li>
+                </c:forEach>
+            </ul>
+        </c:if>
+        <form action="" method="post">
+            CNPJ:<input name="cnpj" type="text" value="${sessionScope.Hotel.CNPJ}" /> <br />
+            Senha:<input name="senha" type="password" value="" />  <br />
+            Nome:<input name="nome" type="text" value= "${sessionScope.Hotel.nome}" />  <br />
+            Cidade:<input name="cidade" type="text" value="${sessionScope.Hotel.cidade}" />  <br />
+            <input type="submit" value="Cadastrar"/>
         </form>
     </body>
 </html>

@@ -5,9 +5,10 @@
  */
 package reserva.servlets;
 
-import reserva.Site;
-import reserva.dao.SiteDAO;
+import reserva.Hotel;
+import reserva.dao.HotelDAO;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
@@ -18,50 +19,43 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 import org.apache.commons.beanutils.BeanUtils;
 
-/**
- *
- * @author etoal
- */
-@WebServlet(name = "GravarSiteServlet", urlPatterns = {"/GravarSiteServlet"})
-public class GravarSiteServlet extends HttpServlet {
-        
+@WebServlet(name = "GravarHotelServlet", urlPatterns = {"/GravarHotelServlet"})
+public class GravarHotelServlet extends HttpServlet {
+
     @Resource(name = "jdbc/ReservaDBLocal")
     DataSource dataSource;
-  
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        Site site = new Site();     
-        SiteDAO siteDao = new SiteDAO(dataSource);
-        
+        Hotel hotel = new Hotel();     
+        HotelDAO hotelDao = new HotelDAO(dataSource);
         
         try {
-            BeanUtils.populate(site, request.getParameterMap());
-            request.getSession().setAttribute("site", site);
-            List<String> mensagens = site.validar();
+            BeanUtils.populate(hotel, request.getParameterMap());
+            request.getSession().setAttribute("hotel", hotel);
+            List<String> mensagens = hotel.validar();
            
             if(mensagens == null) {
-                siteDao.gravarSite(site);
+                //hotelDao.gravarSite(hotel);
                 String mem = "Dados Salvos: <br/>";
-                mem = mem + "URL: " + site.getUrl() + "<br/>";
+                mem = mem + "CNPJ: " + hotel.getCNPJMascara()+ "<br/>";
                 mem = mem + "Senha: **** <br/>";
-                mem = mem + "Nome: " + site.getNome() + "<br/>";
-                mem = mem + "Telefone: " + String.valueOf(site.getTelefoneMascara()) + "<br/>";
+                mem = mem + "Nome: " + hotel.getNome() + "<br/>";
+                mem = mem + "Cidade: " + hotel.getCidade() + "<br/>";
                 request.setAttribute("mensagens", mem);
-                request.getRequestDispatcher("cadastroSite.jsp").forward(request, response);
+                request.getRequestDispatcher("cadastroHotel.jsp").forward(request, response);
             } else {
                 request.setAttribute("mensagens", mensagens);
-                request.getRequestDispatcher("cadastroSite.jsp").forward(request, response);
+                request.getRequestDispatcher("cadastroHotel.jsp").forward(request, response);
             }
-            
-            
+   
         } catch (Exception ex) {
             request.setAttribute("mensagem", ex.getLocalizedMessage());
             request.getRequestDispatcher("erro.jsp").forward(request, response);
         }
-
-    
     }
+   
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
