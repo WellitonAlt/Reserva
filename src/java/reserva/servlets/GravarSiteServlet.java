@@ -8,8 +8,11 @@ package reserva.servlets;
 import reserva.Site;
 import reserva.dao.SiteDAO;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.sql.SQLException;
 import java.util.List;
 import javax.annotation.Resource;
+import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -55,7 +58,7 @@ public class GravarSiteServlet extends HttpServlet {
             }
             
             
-        } catch (Exception ex) {
+        } catch (IOException | IllegalAccessException | InvocationTargetException | SQLException | NamingException | ServletException ex) {
             request.setAttribute("mensagem", ex.getLocalizedMessage());
             request.getRequestDispatcher("erro.jsp").forward(request, response);
         }

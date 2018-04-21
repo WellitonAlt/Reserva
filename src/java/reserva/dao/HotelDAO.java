@@ -37,8 +37,8 @@ public class HotelDAO {
     public Hotel gravarHotel(Hotel hotel) throws SQLException, NamingException {
         try (Connection con = dataSource.getConnection();
                 PreparedStatement ps = con.prepareStatement(CRIAR_HOTEL_SQL, Statement.RETURN_GENERATED_KEYS);) {
-            ps.setString(1, hotel.getNome());
-            ps.setString(2, hotel.getCNPJ());
+            ps.setString(1, hotel.getCnpj());
+            ps.setString(2, hotel.getNome());
             ps.setString(3, hotel.getSenha());
             ps.setString(4, hotel.getCidade());
             ps.execute();
@@ -60,7 +60,7 @@ public class HotelDAO {
                 rs.next();
                 Hotel hotel = new Hotel();
                 hotel.setId(rs.getInt("id"));
-                hotel.setCNPJ(rs.getString("cnpj"));
+                hotel.setCnpj(rs.getString("cnpj"));
                 hotel.setNome(rs.getString("nome"));
                 hotel.setCidade(rs.getString("cidade"));
                 return hotel;
@@ -83,7 +83,7 @@ public class HotelDAO {
                 while (rs.next()) {
                     Hotel hotel = new Hotel();
                     hotel.setId(rs.getInt("id"));
-                    hotel.setCNPJ(rs.getString("cnpj"));
+                    hotel.setCnpj(rs.getString("cnpj"));
                     hotel.setNome(rs.getString("nome"));
                     hotel.setCidade(rs.getString("cidade"));
                    

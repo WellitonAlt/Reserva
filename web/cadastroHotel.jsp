@@ -26,7 +26,7 @@
                 </c:forEach>
             </ul>
         </c:if>
-        <form action="" method="post">
+        <form action="GravarHotelServlet" method="post">
             CNPJ:<input name="cnpj" type="text" value="${sessionScope.Hotel.CNPJ}" /> <br />
             Senha:<input name="senha" type="password" value="" />  <br />
             Nome:<input name="nome" type="text" value= "${sessionScope.Hotel.nome}" />  <br />
