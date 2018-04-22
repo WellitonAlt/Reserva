@@ -7,7 +7,7 @@
         <title>TreisVaga</title>      
     </head>
     <body>
-        <h1>Login ADM</h1>
+        <h1>Login</h1>
         <h3>Menu:</h3>
         <a href="index.jsp">Pagina Inicial</a><br/>
         <a href="ListaHoteisServlet?cidade=">Ver Hotéis</a><br/>        

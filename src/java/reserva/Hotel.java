@@ -48,6 +48,9 @@ public class Hotel {
         if (cnpj.length() < 14 || cnpj.length() > 15 ){
             mensagens.add("CNPJ deve conter 14 digitos!. Ex: 72629140000134");       
         }
+        if (cnpj.matches("[a-zA-Z]*")) {
+            mensagens.add("CNPJ nao deve conter letras!");
+        }
         if (nome.trim().length() == 0) {
             mensagens.add("Nome não pode ser vazio!");
         }

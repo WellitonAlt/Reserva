@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+import java.util.Date;
 
 public class PromocaoDAO {
  
@@ -26,6 +27,14 @@ public class PromocaoDAO {
             + " from Promocao p"
             + " inner join Hotel h on p.hotel = h.id"
             + " inner join Site s on p.site = s.id";
+    
+    private final static String VERIFICA_DATA_SQL = "select"
+            + " dataInicial, dataFinal, hotel"
+            + " from Promocao "
+            + " where "
+            + " hotel = ? and"
+            + " dataInicial = ? and"
+            + " dataFinal = ?";
 
         DataSource dataSource;
 
@@ -37,7 +46,7 @@ public class PromocaoDAO {
         try (Connection con = dataSource.getConnection();
                 PreparedStatement ps = con.prepareStatement(CRIAR_PROMOCAO_SQL, Statement.RETURN_GENERATED_KEYS);) {
             
-            ps.setFloat(1, promocao.getPreço());
+            ps.setFloat(1, promocao.getPreco());
             ps.setDate(2, new java.sql.Date(promocao.getDataInicial().getTime()));
             ps.setDate(3, new java.sql.Date(promocao.getDataFinal().getTime()));
             ps.setInt(4, promocao.getSite());
@@ -65,7 +74,7 @@ public class PromocaoDAO {
                     promocao.setId(rs.getInt("promocaoId"));
                     promocao.setSite(rs.getInt("siteID"));
                     promocao.setHotel(rs.getInt("hotelId"));
-                    promocao.setPreço(rs.getFloat("preco"));
+                    promocao.setPreco(rs.getFloat("preco"));
                     promocao.setDataInicial(rs.getDate("dataInicial"));
                     promocao.setDataFinal(rs.getDate("dataInicial"));
                     
@@ -74,5 +83,27 @@ public class PromocaoDAO {
             }
         }
         return ret;
+    }
+    
+    public boolean verificaData(Date dataInicial, Date dataFinal, int hotel) throws SQLException, NamingException {
+         try (Connection con = dataSource.getConnection();
+                PreparedStatement ps = con.prepareStatement(VERIFICA_DATA_SQL)) {
+            
+             
+            java.sql.Date sqlDataInicial = new java.sql.Date(dataInicial.getTime());
+            java.sql.Date sqlDataFinal = new java.sql.Date(dataFinal.getTime());
+            
+            ps.setInt(1, hotel);
+            ps.setDate(2, sqlDataInicial);
+            ps.setDate(3, sqlDataFinal); 
+            
+            try (ResultSet rs = ps.executeQuery()) {
+               if(rs.next())
+                   return true;
+               else
+                   return false;
+            }
+        }
+        
     }
 }

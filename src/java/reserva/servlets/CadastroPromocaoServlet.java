@@ -5,8 +5,10 @@
  */
 package reserva.servlets;
 
-import reserva.dao.HotelDAO;
+import reserva.dao.SiteDAO;
+import reserva.Site;
 import reserva.Hotel;
+import reserva.dao.HotelDAO;
 import java.io.IOException;
 import java.util.List;
 import javax.annotation.Resource;
@@ -18,28 +20,37 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
 
-@WebServlet(name = "ListaHoteisServlet", urlPatterns = {"/ListaHoteisServlet"})
-public class ListaHoteisServlet extends HttpServlet {
-    @Resource(name = "jdbc/ReservaDBLocal")
+
+@WebServlet(name = "CadastroPromocaoServlet", urlPatterns = {"/CadastroPromocaoServlet"})
+public class CadastroPromocaoServlet extends HttpServlet {
+
+   @Resource(name = "jdbc/ReservaDBLocal")
     DataSource dataSource;
-    
+   
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        HotelDAO hotelDAO = new HotelDAO(dataSource);
+        String hotelId = request.getParameter("hotel");
+        SiteDAO siteDao = new SiteDAO(dataSource);
+        HotelDAO hotelDao = new HotelDAO(dataSource);
+        Hotel hotel = new Hotel();
         
-        String cidade = request.getParameter("cidade");
-        //System.out.print(cidade);
-        List<Hotel> hoteis = null;
         try {
-            if (cidade == null) {
-                hoteis = hotelDAO.listarTodasHoteisByCidade("");
-            } else {
-                hoteis = hotelDAO.listarTodasHoteisByCidade(cidade);
-            }
-            
-            request.setAttribute("hoteis", hoteis);
-            request.getRequestDispatcher("listaHoteis.jsp").forward(request, response);
+            hotel = hotelDao.buscarHotel(Integer.valueOf(hotelId));
+        }catch(Exception e){
+            e.printStackTrace();
+            request.setAttribute("mensagem", hotel.getNome());
+            request.getRequestDispatcher("erro.jsp").forward(request, response);
+        }       
+       
+        List<Site> sites = null;
+        try {
+            sites = siteDao.listarTodasSites();
+            if (sites != null) {
+                request.setAttribute("sites", sites);                
+                request.setAttribute("hotel", hotel);
+                request.getRequestDispatcher("cadastroPromocao.jsp").forward(request, response);
+            }            
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("mensagem", e.getLocalizedMessage());

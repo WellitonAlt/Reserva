@@ -7,10 +7,10 @@
         <title>TreisVaga</title>      
     </head>
     <body>
-        <h1>Area de Administração - root </h1>
-        <h3>Menu:</h3>
-        <a href="cadastroSite.jsp">Cadastro Site de Reserva</a><br/>        
-        <a href="cadastroHotel.jsp">Cadastro Hotel</a><br/>
+        <h1>Area de Hotel - ${requestScope.hotel.nome}  </h1>
+        <h3>Menu: </h3>
+        <a href="CadastroPromocaoServlet?hotel=${requestScope.hotel.id}">Cadastro Promocao</a><br/>        
+        <a href="#">Listar Promocao</a><br/>
         <a href="index.jsp">Sair</a><br/>
         <hr>
     </body>

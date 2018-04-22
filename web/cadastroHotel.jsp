@@ -1,8 +1,4 @@
-<%-- 
-    Document   : cadastroHotel
-    Created on : Apr 16, 2018, 3:54:49 PM
-    Author     : spooks
---%>
+
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -13,7 +9,7 @@
         <title>TreisVaga</title>    
     </head>
     <body>
-        <h1>Hoteis</h1>
+        <h1>Cadastro Hoteis</h1>
         <h3>Menu:</h3>
         <a href="index.jsp">Pagina Inicial</a><br/>
         <a href="areaAdm.jsp">Area de Administrador</a><br/>

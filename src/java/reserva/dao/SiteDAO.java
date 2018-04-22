@@ -17,6 +17,10 @@ public class SiteDAO {
             + " (url, senha, nome, telefone)"
             + " values (?,?,?,?)";
     
+    private final static String BUSCAR_SITE_SQL = "select"
+            + " id, nome"
+            + " from Site";
+    
     DataSource dataSource;
 
     public SiteDAO(DataSource dataSource) {
@@ -38,5 +42,23 @@ public class SiteDAO {
             }
         }
         return site;
+    }
+    
+        public List<Site> listarTodasSites() throws SQLException, NamingException {
+        List<Site> ret = new ArrayList<>();
+        try (Connection con = dataSource.getConnection();
+                PreparedStatement ps = con.prepareStatement(BUSCAR_SITE_SQL)) {
+            
+            
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    Site site = new Site();
+                    site.setId(rs.getInt("id"));
+                    site.setNome(rs.getString("nome"));                  
+                    ret.add(site);
+                }
+            }
+        }
+        return ret;
     }
 }

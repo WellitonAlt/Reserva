@@ -1,22 +1,31 @@
 package reserva.servlets;
 
 import reserva.Login;
+import reserva.dao.HotelDAO;
+import reserva.Hotel;
 import java.io.IOException;
+import javax.annotation.Resource;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.sql.DataSource;
 import org.apache.commons.beanutils.BeanUtils;
 
 @WebServlet(name = "LoginServlet", urlPatterns = {"/LoginServlet"})
 public class LoginServlet extends HttpServlet {
+    
+    @Resource(name = "jdbc/ReservaDBLocal")
+    DataSource dataSource;
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
         try{
            Login login = new Login();
+           HotelDAO hotelDao = new HotelDAO(dataSource);
+           Hotel hotel = new Hotel();
            BeanUtils.populate(login, request.getParameterMap());
            request.getSession().setAttribute("login", login);
            
@@ -27,7 +36,18 @@ public class LoginServlet extends HttpServlet {
                     String mensagem = "Usuario ou Senha de Administrador são Invalidos!!!";
                     request.setAttribute("mensagem", mensagem);
                     request.getRequestDispatcher("login.jsp").forward(request, response);
-               }              
+               }
+           }else if (login.getTipo().equals("hotel")){
+               hotel = hotelDao.loginHotel(login.getUsuario(), login.getSenha()); 
+               if(hotel != null){
+                   request.setAttribute("hotel", hotel);
+                   request.getRequestDispatcher("areaHotel.jsp").forward(request, response);
+               }
+               else{
+                    String mensagem = "Usuario ou Senha de Hotel são Invalidos!!!";
+                    request.setAttribute("mensagem", mensagem);
+                    request.getRequestDispatcher("login.jsp").forward(request, response);
+               }                   
            }else{
                String mensagem = "ESSA MERDA NAO FUNCIONA AINDA";
                request.setAttribute("mensagem", mensagem);
