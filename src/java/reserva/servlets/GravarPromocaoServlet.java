@@ -8,7 +8,6 @@ package reserva.servlets;
 import reserva.Promocao;
 import reserva.dao.PromocaoDAO;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;

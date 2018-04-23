@@ -16,15 +16,15 @@
               <div class="nav-wrapper indigo">
                 <a href="#" class="brand-logo"><img class="materialboxed" width="280" src="img/TreisVaGa.png" ></a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="CadastroPromocaoServlet?hotel=${requestScope.hotel.id}">Cadastro Promocao</a></li>        
-                    <li><a href="ListarPromocaoServlet?tipo=1&ID=${requestScope.hotel.id}">Listar Promocao</a></li>
+                    <li><a href="CadastroPromocaoServlet?hotel=${requestScope.hotel.id}">Cadastrar Promoção</a></li>        
+                    <li><a href="ListarPromocaoServlet?tipo=1&ID=${requestScope.hotel.id}">Listar Promoções</a></li>
                     <li><a href="index.jsp">Sair</a></li>
                 </ul>
               </div>
             </nav>
         </div>
         <div class="container">
-            <h4>Area de Hotel - ${requestScope.hotel.nome}</h4>
+            <h4>Área de Hotel - ${requestScope.hotel.nome}</h4>
             <center>
                 <img class="materialboxed" width="650" src="img/hotel.jpg" >  <br/>
             </center>

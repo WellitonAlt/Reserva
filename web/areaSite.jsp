@@ -16,7 +16,7 @@
               <div class="nav-wrapper indigo">
                 <a href="#" class="brand-logo"><img class="materialboxed" width="280" src="img/TreisVaGa.png" ></a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="ListarPromocaoServlet?tipo=2&ID=${requestScope.site.id}">Listar Promocao</a></li>
+                    <li><a href="ListarPromocaoServlet?tipo=2&ID=${requestScope.site.id}">Listar Promoções</a></li>
                     <li><a href="index.jsp">Sair</a></li>
                 </ul>
               </div>

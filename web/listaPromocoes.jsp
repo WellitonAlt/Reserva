@@ -7,7 +7,7 @@
         <title>TreisVaga</title>    
     </head>
     <body>
-        <h1>Listar Promoções</h1>
+        <h1>Promoções</h1>
         <h3>Menu:</h3>
         <a href="index.jsp">Página Inicial</a><br/>
         <a href="javascript:history.go(-1)">Voltar</a><br/>

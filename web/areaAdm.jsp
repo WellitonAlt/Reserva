@@ -16,15 +16,15 @@
               <div class="nav-wrapper indigo">
                 <a href="#" class="brand-logo"><img class="materialboxed" width="280" src="img/TreisVaGa.png" ></a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="cadastroSite.jsp">Cadastro Site de Reserva</a></li>         
-                    <li><a href="cadastroHotel.jsp">Cadastro Hotel</a></li>
+                    <li><a href="cadastroSite.jsp">Cadastrar Site de Reservas</a></li>         
+                    <li><a href="cadastroHotel.jsp">Cadastrar Hotel</a></li>
                     <li><a href="index.jsp">Sair</a></li>         
                 </ul>
               </div>
             </nav>
         </div>
         <div class="container">
-            <h4>Area de Administração - root</h4>
+            <h4>Área de Administração - root</h4>
             <center>
                 <img class="materialboxed" width="650" src="img/adm.jpg" >  <br/>
             </center>
