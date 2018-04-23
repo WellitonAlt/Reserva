@@ -54,12 +54,12 @@ public class LoginServlet extends HttpServlet {
                }                   
            }else{
                site = siteDao.loginSite(login.getUsuario(), login.getSenha()); 
-               if(hotel != null){
+               if(site != null){
                    request.setAttribute("site", site);
                    request.getRequestDispatcher("areaSite.jsp").forward(request, response);
                }
                else{
-                    String mensagem = "Usuario ou Senha de Hotel são Invalidos!!!";
+                    String mensagem = "Usuario ou Senha de Site são Invalidos!!!";
                     request.setAttribute("mensagem", mensagem);
                     request.getRequestDispatcher("login.jsp").forward(request, response);
                }                   
