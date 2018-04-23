@@ -15,8 +15,8 @@
     <body>
         <div class="container">
             <nav>
-              <div class="nav-wrapper blue">
-                <a href="#" class="brand-logo">TreisVagas</a>
+              <div class="nav-wrapper indigo">
+                <a href="#" class="brand-logo"><img class="materialboxed" width="280" src="img/TreisVaGa.png" ></a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li><a href="index.jsp">Pagina Inicial</a></li>
                     <li><a href="areaAdm.jsp">Area de Administrador</a></li>
@@ -59,7 +59,7 @@
                 </div>
               </div>
               <div class="row">
-                  <a class="waves-effect waves-light btn blue">
+                  <a class="waves-effect waves-light btn indigo">
                       <input type="submit" value="Cadastrar"/>
                   </a>
               </div>
@@ -67,7 +67,7 @@
         </div>
         </center>
         <div class="container">
-            <footer class="page-footer blue">
+            <footer class="page-footer indigo">
               <div class="footer-copyright">
                 <div class="container">
                    <center>

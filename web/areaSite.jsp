@@ -13,8 +13,8 @@
     <body>
         <div class="container">
             <nav>
-              <div class="nav-wrapper blue">
-                <a href="#" class="brand-logo">TreisVagas</a>
+              <div class="nav-wrapper indigo">
+                <a href="#" class="brand-logo"><img class="materialboxed" width="280" src="img/TreisVaGa.png" ></a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li><a href="ListarPromocaoServlet?tipo=2&ID=${requestScope.site.id}">Listar Promocao</a></li>
                     <li><a href="index.jsp">Sair</a></li>
@@ -29,7 +29,7 @@
             </center>
         </div>
         <div class="container">
-        <footer class="page-footer blue">
+        <footer class="page-footer indigo">
           <div class="footer-copyright">
             <div class="container">
                <center>
