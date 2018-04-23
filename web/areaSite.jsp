@@ -24,7 +24,7 @@
         </div>
         <div class="container">
             <center>
-                <h4>Area de Site - ${requestScope.site.nome}</h4>
+                <h4>Área de Site - ${requestScope.site.nome}</h4>
                 <img class="materialboxed" width="650" src="img/site.jpg" >  <br/>
             </center>
         </div>

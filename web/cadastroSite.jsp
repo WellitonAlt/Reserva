@@ -26,7 +26,7 @@
         </div>
         <div class="container">
             <center>
-                <h4>Cadastro Site</h4>
+                <h4>Cadastro de Site</h4>
                 <c:if test="${!empty requestScope.mensagens}">
                     <ul class="erro">
                         <c:forEach items="${requestScope.mensagens}" var="mensagem">

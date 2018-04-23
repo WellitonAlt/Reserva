@@ -29,7 +29,7 @@
             </center>
         </div>
             
-        div class="container">
+        <div class="container">
         <footer class="page-footer indigo">
           <div class="footer-copyright">
             <div class="container">

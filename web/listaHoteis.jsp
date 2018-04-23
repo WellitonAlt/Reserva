@@ -1,5 +1,3 @@
-
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -28,7 +26,7 @@
         
         <div class="container">
             <center>
-                <h4> Lista de Hoteis</h4>
+                <h4>Lista de Hotéis</h4>
             </center>
         </div>
         

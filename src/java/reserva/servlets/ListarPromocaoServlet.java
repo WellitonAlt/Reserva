@@ -8,8 +8,10 @@ package reserva.servlets;
 import reserva.dao.PromocaoDAO;
 import reserva.PromocaoConsulta;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 import javax.annotation.Resource;
+import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -41,8 +43,7 @@ public class ListarPromocaoServlet extends HttpServlet {
             
             request.setAttribute("promocoes", promocoes);
             request.getRequestDispatcher("listaPromocoes.jsp").forward(request, response);
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (IOException | SQLException | NamingException | ServletException e) {
             request.setAttribute("mensagem", e.getLocalizedMessage());
             request.getRequestDispatcher("erro.jsp").forward(request, response);
         }

@@ -25,7 +25,7 @@
         </div>
         <div class="container">
             <center>
-                <h4>Área de Administraçãoo - root</h4>   
+                <h4>Área de Administração - root</h4>   
                 <img class="materialboxed" width="650" src="img/adm.jpg" >  <br/>
             </center>
         </div>

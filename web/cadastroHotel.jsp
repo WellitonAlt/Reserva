@@ -29,7 +29,7 @@
         
         <div class="container">
             <center>
-                <h4>Cadastro Hotel</h4>
+                <h4>Cadastro de Hotel</h4>
                 <c:if test="${!empty requestScope.mensagens}">
                     <ul class="erro">
                         <c:forEach items="${requestScope.mensagens}" var="mensagem">

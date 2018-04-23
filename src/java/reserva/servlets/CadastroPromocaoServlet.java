@@ -10,8 +10,10 @@ import reserva.Site;
 import reserva.Hotel;
 import reserva.dao.HotelDAO;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 import javax.annotation.Resource;
+import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -51,8 +53,7 @@ public class CadastroPromocaoServlet extends HttpServlet {
                 request.setAttribute("hotel", hotel);
                 request.getRequestDispatcher("cadastroPromocao.jsp").forward(request, response);
             }            
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (IOException | SQLException | NamingException | ServletException e) {
             request.setAttribute("mensagem", e.getLocalizedMessage());
             request.getRequestDispatcher("erro.jsp").forward(request, response);
         }
