@@ -42,7 +42,7 @@ public class LoginServlet extends HttpServlet {
                     request.getRequestDispatcher("login.jsp").forward(request, response);
                }
            }else if (login.getTipo().equals("hotel")){
-               hotel = hotelDao.loginHotel(login.getUsuario(), login.getSenha()); 
+               hotel = hotelDao.loginHotel(login.getUsuario().replace(".","").replace("/","").replace("-",""), login.getSenha()); 
                if(hotel != null){
                    request.setAttribute("hotel", hotel);
                    request.getRequestDispatcher("areaHotel.jsp").forward(request, response);
