@@ -7,9 +7,9 @@
         <title>TreisVaga</title>    
     </head>
     <body>
-        <h1>Lista Promoção </h1>
+        <h1>Listar Promoções</h1>
         <h3>Menu:</h3>
-        <a href="index.jsp">Pagina Inicial</a><br/>
+        <a href="index.jsp">Página Inicial</a><br/>
         <a href="javascript:history.go(-1)">Voltar</a><br/>
         <a href="login.jsp">Sair</a><br/>
         <hr>
@@ -19,7 +19,7 @@
         <c:if test="${!empty requestScope.promocoes}">        
             <table border = '1'>
                 <tr>                   
-                    <th>Promoçãoo ID</th>
+                    <th>Promoção ID</th>
                     <th>Hotel</th>
                     <th>Cidade</th>
                     <th>Preço</th>

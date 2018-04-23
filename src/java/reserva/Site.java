@@ -48,16 +48,16 @@ public class Site {
         List<String> mensagens = new ArrayList<String>();
                
         if (url.trim().length() == 0) {
-            mensagens.add("Url não pode ser vazio!");
+            mensagens.add("URL não pode ser vazio!");
         }
         if (!url.matches("(www.)?[a-zA-Z0-9]+\\.[a-zA-Z]+\\.[a-zA-Z]*")){
-            mensagens.add("Url não está no formato padrão!. Ex: www.google.com.br ");       
+            mensagens.add("URL não está no formato padrão!. Ex: www.google.com.br ");       
         }
         if (nome.trim().length() == 0) {
             mensagens.add("Nome não pode ser vazio!");
         }
         if (senha.trim().length() == 0) {
-            mensagens.add("Senha não pode ser vazio!");
+            mensagens.add("Senha não pode ser vazia!");
         }
         if (telefone.trim().length() == 0) {
             mensagens.add("Telefone não pode ser vazio!");
@@ -66,7 +66,7 @@ public class Site {
             mensagens.add("Telefone deve conter 11 digitos!. Ex: 14997555555");
         }
         if (telefone.matches("[a-zA-Z]*")) {
-            mensagens.add("Telefone nao deve conter letras!");
+            mensagens.add("Telefone não deve conter letras!");
         }
         return (mensagens.isEmpty() ? null : mensagens);
     }

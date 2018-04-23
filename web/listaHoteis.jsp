@@ -7,9 +7,9 @@
         <title>TreisVaga</title>    
     </head>
     <body>
-        <h1>Hoteis</h1>
+        <h1>Hotéis</h1>
         <h3>Menu:</h3>
-        <a href="index.jsp">Pagina Inicial</a><br/>
+        <a href="index.jsp">Página Inicial</a><br/>
         <a href="login.jsp">Login</a><br/>
         <hr>
         <form action="ListaHoteisServlet" method="post">
@@ -19,7 +19,7 @@
         </form>
         <br />
         <c:if test="${empty requestScope.hoteis}">
-            Não há Hoteis!
+            Não há Hotéis!
         </c:if>
         <c:if test="${!empty requestScope.hoteis}">        
             <table>

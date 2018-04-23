@@ -46,10 +46,10 @@ public class Promocao {
             mensagens.add("Preço não pode ser vazio!");
         }
         if (dataInicial.toString().length() == 0) {
-            mensagens.add("Data Inicial não pode ser vazio!");
+            mensagens.add("Data Inicial não pode ser vazia!");
         }
         if (dataFinal.toString().length() == 0) {
-            mensagens.add("Data Final não pode ser vazio!");
+            mensagens.add("Data Final não pode ser vazia!");
         }
         
         try{

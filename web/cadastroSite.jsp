@@ -7,10 +7,10 @@
         <title>TreisVaga</title>   
     </head>
     <body>
-        <h1>Cadastro Site</h1>
+        <h1>Cadastro de Sites</h1>
         <h3>Menu:</h3>
-        <a href="index.jsp">Pagina Inicial</a><br/>
-        <a href="areaAdm.jsp">Area de Administrador</a><br/>
+        <a href="index.jsp">Página Inicial</a><br/>
+        <a href="areaAdm.jsp">Área de Administrador</a><br/>
         <a href="login.jsp">Sair</a><br/>        
         <hr>
         <c:if test="${!empty requestScope.mensagens}">
@@ -21,7 +21,7 @@
             </ul>
         </c:if>
         <form action="GravarSiteServlet" method="post">
-            Digite os dados do Site de Resserva:<br/><br/>
+            Digite os dados do Site de Reserva:<br/><br/>
             URL: <input name="url" type="text" value="${sessionScope.Site.url}"/><br/>
             Senha: <input name="senha" type="password" value="" /><br/>
             Nome: <input name="nome" type="text" value="${sessionScope.Site.nome}" /><br/>

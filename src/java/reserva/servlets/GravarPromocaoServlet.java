@@ -62,6 +62,9 @@ public class GravarPromocaoServlet extends HttpServlet {
             else
                mensagens.add("Data Final não pode ser vazio!");
             
+            if(promocao.getDataFinal().before(promocao.getDataInicial()))
+                mensagens.add("A Data Final não pode ser anterior à Data Inicial!");
+            
             if(promocaoDao.verificaData(promocao.getDataInicial(), promocao.getDataFinal(), promocao.getHotel()))
                 mensagens.add("Ja existe uma promocao para essa mesma data!");
             
