@@ -18,15 +18,15 @@
               <div class="nav-wrapper blue">
                 <a href="#" class="brand-logo">TreisVagas</a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="index.jsp">Pagina Inicial</a></li>
-                    <li><a href="areaAdm.jsp">Area de Administrador</a></li>
+                    <li><a href="index.jsp">Página Inicial</a></li>
+                    <li><a href="areaAdm.jsp">Área de Administrador</a></li>
                     <li><a href="login.jsp">Sair</a></li> 
                 </ul>
               </div>
             </nav>
         </div>
         <div class="container">
-            <h4>Cadastro Hotel</h4>
+            <h4>Cadastro de Hotéis</h4>
             <c:if test="${!empty requestScope.mensagens}">
                 <ul class="erro">
                     <c:forEach items="${requestScope.mensagens}" var="mensagem">
