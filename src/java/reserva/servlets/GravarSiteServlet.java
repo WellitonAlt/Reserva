@@ -50,7 +50,7 @@ public class GravarSiteServlet extends HttpServlet {
                 mem = mem + "Senha: **** <br/>";
                 mem = mem + "Nome: " + site.getNome() + "<br/>";
                 mem = mem + "Telefone: " + String.valueOf(site.getTelefoneMascara()) + "<br/>";
-                request.setAttribute("mensagens", mem);
+                request.setAttribute("salvou", mem);
                 request.getRequestDispatcher("cadastroSite.jsp").forward(request, response);
             } else {
                 request.setAttribute("mensagens", mensagens);
