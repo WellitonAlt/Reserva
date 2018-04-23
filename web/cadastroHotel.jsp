@@ -10,6 +10,7 @@
         
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+        <link type="text/css" rel="stylesheet" href="css/estilo.css"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
@@ -25,15 +26,25 @@
               </div>
             </nav>
         </div>
+        
         <div class="container">
-            <h4>Cadastro de Hotéis</h4>
-            <c:if test="${!empty requestScope.mensagens}">
-                <ul class="erro">
-                    <c:forEach items="${requestScope.mensagens}" var="mensagem">
-                        <li>${mensagem}</li>
-                    </c:forEach>
-                </ul>
-            </c:if>
+            <center>
+                <h4>Cadastro Hotel</h4>
+                <c:if test="${!empty requestScope.mensagens}">
+                    <ul class="erro">
+                        <c:forEach items="${requestScope.mensagens}" var="mensagem">
+                            <li>${mensagem}</li>
+                        </c:forEach>
+                    </ul>
+                </c:if>
+                <c:if test="${!empty requestScope.salvou}">
+                    <ul class="salvou">
+                        <c:forEach items="${requestScope.salvou}" var="mensagem">
+                            <li>${mensagem}</li>
+                        </c:forEach>
+                    </ul>
+                </c:if>
+            </center>
         </div>
         <center>
         <div class="container center">
@@ -44,7 +55,7 @@
                   <label for="cnpj">CNPJ</label>
                 </div>
                 <div class="input-field col s6">
-                  <input name="senha" type="text" type="password" value="" >
+                  <input name="senha" type="password" value="" >
                   <label for="senha">Senha</label>
                 </div>
               </div>

@@ -1,0 +1,18 @@
+<form action="GravarPromocaoServlet" method="post">
+            
+            <input name="hotel" type="hidden" value="${requestScope.hotel.id}" />
+            <input name="hotelNome" type="hidden" value="${requestScope.hotel.nome}" />
+            Preço:<input name="preco" type="text" value="${sessionScope.Promocao.preco}" /> <br />
+            Data Inicial:<input name="dataInicial" type="Date" value="${sessionScope.Promocao.dataInicial}" /> <br />
+            Data Final:<input name="dataFinal" type="Date" value="${sessionScope.Promocao.dataFinal}" /> <br />
+            <input type="submit" value="Cadastrar"/>
+        </form>
+		
+		<div class="input-field col s12">
+                  <select name="site">
+                      <c:forEach items="${requestScope.sites}" var="site">
+                         <option value="${site.id}">${site.nome}</option>   
+                       </c:forEach>
+                  </select>
+                  <label for="site">Site</label>
+                </div>

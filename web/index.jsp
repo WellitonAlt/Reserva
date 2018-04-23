@@ -22,8 +22,8 @@
             </nav>
         </div>
         <div class="container">
-            <h4>Bem-vindo ao site TreisVaga</h4> 
             <center>
+                <h4>Bem-vindo ao site TreisVaga</h4>          
                 <img class="materialboxed" width="650" src="img/hotel.jpg" >  <br/>
             </center>
         </div>

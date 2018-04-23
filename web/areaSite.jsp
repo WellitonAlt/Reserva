@@ -23,8 +23,8 @@
             </nav>
         </div>
         <div class="container">
-            <h4>Area de Site - ${requestScope.site.nome}</h4>
             <center>
+                <h4>Area de Site - ${requestScope.site.nome}</h4>
                 <img class="materialboxed" width="650" src="img/site.jpg" >  <br/>
             </center>
         </div>

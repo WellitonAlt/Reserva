@@ -60,12 +60,15 @@ public class GravarPromocaoServlet extends HttpServlet {
             }
             else
                mensagens.add("Data Final não pode ser vazio!");
+             
+            if(mensagens.isEmpty()) {           
             
-            if(promocao.getDataFinal().before(promocao.getDataInicial()))
-                mensagens.add("A Data Final não pode ser anterior à Data Inicial!");
-            
-            if(promocaoDao.verificaData(promocao.getDataInicial(), promocao.getDataFinal(), promocao.getHotel()))
-                mensagens.add("Ja existe uma promocao para essa mesma data!");
+                if(promocaoDao.verificaData(promocao.getDataInicial(), promocao.getDataFinal(), promocao.getHotel()))
+                    mensagens.add("Ja existe uma promocao para essa mesma data!");
+                
+                if(promocao.getDataFinal().before(promocao.getDataInicial()))
+                    mensagens.add("A Data Final não pode ser anterior à Data Inicial!");
+            }
             
             request.getSession().setAttribute("promocao", promocao);            
             String aux = "CadastroPromocaoServlet?hotel=" + request.getParameter("hotel");        
@@ -77,7 +80,7 @@ public class GravarPromocaoServlet extends HttpServlet {
                 mem = mem + "Preço: " + promocao.getPreco()+ " R$ <br/>";
                 mem = mem + "Data Inicial: " + promocao.getDataInicial() + "<br/>";
                 mem = mem + "Data Final: " + promocao.getDataFinal() + "<br/>";
-                request.setAttribute("mensagens", mem);                
+                request.setAttribute("salvou", mem);                
                 request.getRequestDispatcher(aux).forward(request, response);
             } else {
                 request.setAttribute("mensagens", mensagens);

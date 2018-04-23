@@ -38,26 +38,5 @@ public class Promocao {
     public Date getDataFinal() { return dataFinal; }
 
     public void setDataFinal(Date dataFinal) { this.dataFinal = dataFinal; }
-    
-    public List<String> validar(DataSource dataSource) {
-        List<String> mensagens = new ArrayList<>();
-        PromocaoDAO promocaoDao = new PromocaoDAO(dataSource);
-        if (String.valueOf(preco).trim().length() == 0) {
-            mensagens.add("Preço não pode ser vazio!");
-        }
-        if (dataInicial.toString().length() == 0) {
-            mensagens.add("Data Inicial não pode ser vazia!");
-        }
-        if (dataFinal.toString().length() == 0) {
-            mensagens.add("Data Final não pode ser vazia!");
-        }
-        
-        try{
-            if (promocaoDao.verificaData(dataInicial, dataFinal, hotel)){
-                mensagens.add("Existe uma Promoção com datas coincidentes!");
-            }
-        }catch(SQLException | NamingException ex){};            
-        
-        return (mensagens.isEmpty() ? null : mensagens);
-    } 
+
 }

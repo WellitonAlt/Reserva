@@ -45,7 +45,7 @@ public class GravarHotelServlet extends HttpServlet {
                 mem = mem + "Senha: **** <br/>";
                 mem = mem + "Nome: " + hotel.getNome() + "<br/>";
                 mem = mem + "Cidade: " + hotel.getCidade() + "<br/>";
-                request.setAttribute("mensagens", mem);
+                request.setAttribute("salvou", mem);
                 request.getRequestDispatcher("cadastroHotel.jsp").forward(request, response);
             } else {
                 request.setAttribute("mensagens", mensagens);

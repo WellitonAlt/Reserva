@@ -24,8 +24,8 @@
             </nav>
         </div>
         <div class="container">
-            <h4>Área de Hotel - ${requestScope.hotel.nome}</h4>
             <center>
+                <h4>Área de Hotel - ${requestScope.hotel.nome}</h4>    
                 <img class="materialboxed" width="650" src="img/hotel.jpg" >  <br/>
             </center>
         </div>
