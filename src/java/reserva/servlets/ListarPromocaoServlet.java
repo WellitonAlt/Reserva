@@ -1,7 +1,12 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package reserva.servlets;
 
-import reserva.dao.HotelDAO;
-import reserva.Hotel;
+import reserva.dao.PromocaoDAO;
+import reserva.PromocaoConsulta;
 import java.io.IOException;
 import java.util.List;
 import javax.annotation.Resource;
@@ -12,9 +17,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
-
-@WebServlet(name = "ListaHoteisServlet", urlPatterns = {"/ListaHoteisServlet"})
-public class ListaHoteisServlet extends HttpServlet {
+@WebServlet(name = "ListarPromocaoServlet", urlPatterns = {"/ListarPromocaoServlet"})
+public class ListarPromocaoServlet extends HttpServlet {
     
     @Resource(name = "jdbc/ReservaDBLocal")
     DataSource dataSource;
@@ -22,25 +26,28 @@ public class ListaHoteisServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        HotelDAO hotelDAO = new HotelDAO(dataSource);
+        PromocaoDAO promocaoDAO = new PromocaoDAO(dataSource);
         
-        String cidade = request.getParameter("cidade");
-        //System.out.print(cidade);
-        List<Hotel> hoteis = null;
+        String tipo = request.getParameter("tipo");
+        String ID = request.getParameter("ID");
+        
+        List<PromocaoConsulta> promocoes = null;
         try {
-            if (cidade == null) {
-                hoteis = hotelDAO.listarTodasHoteisByCidade("");
+            if (tipo.equals("1")) {
+                promocoes = promocaoDAO.listarTodasPromocoesByHotel(ID);
             } else {
-                hoteis = hotelDAO.listarTodasHoteisByCidade(cidade);
+                promocoes = promocaoDAO.listarTodasPromocoesBySite(ID);
             }
             
-            request.setAttribute("hoteis", hoteis);
-            request.getRequestDispatcher("listaHoteis.jsp").forward(request, response);
+            request.setAttribute("promocoes", promocoes);
+            request.getRequestDispatcher("listaPromocoes.jsp").forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("mensagem", e.getLocalizedMessage());
             request.getRequestDispatcher("erro.jsp").forward(request, response);
         }
+        
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

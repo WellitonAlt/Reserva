@@ -3,6 +3,7 @@ package reserva.dao;
 import reserva.Hotel;
 import reserva.Promocao;
 import reserva.Site;
+import reserva.PromocaoConsulta;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,13 +21,24 @@ public class PromocaoDAO {
             + " (preco, dataInicial, dataFinal, site, hotel)"
             + " values (?,?,?,?,?)";
 
-    private final static String LISTAR_PROMOCAO_SQL = "select"
-            + " p.id as promocaoId, p.url, p.preco, p.dataInicial, p.dataFinal"
-            + " h.id as hotelId, h.nome, h.cnpj, h.cidade"
-            + " s.id as siteId, s.nome, s.telefone"
+    private final static String LISTAR_PROMOCAO_SQL_BY_HOTEL = "select"
+            + " p.id as promocaoId, p.preco, p.dataInicial, p.dataFinal,"
+            + " h.id as hotelId, h.nome as hotelNome, h.cidade as hotelCidade,"
+            + " s.id as siteId, s.url as siteURL, s.nome as siteNome, s.telefone as siteTelefone"
             + " from Promocao p"
             + " inner join Hotel h on p.hotel = h.id"
-            + " inner join Site s on p.site = s.id";
+            + " inner join Site s on p.site = s.id"
+            + " where h.id = ?";
+ 
+    
+    private final static String LISTAR_PROMOCAO_SQL_BY_SITE = "select"
+            + " p.id as promocaoId, p.preco, p.dataInicial, p.dataFinal,"
+            + " h.id as hotelId, h.nome as hotelNome, h.cidade as hotelCidade,"
+            + " s.id as siteId, s.url as siteURL, s.nome as siteNome, s.telefone as siteTelefone"
+            + " from Promocao p"
+            + " inner join Hotel h on p.hotel = h.id"
+            + " inner join Site s on p.site = s.id"
+            + " where s.id = ?";
     
     private final static String VERIFICA_DATA_SQL = "select"
             + " dataInicial, dataFinal, hotel"
@@ -61,24 +73,72 @@ public class PromocaoDAO {
         return promocao;
     }
 
-    public List<Promocao> listarTodasPromocoes() throws SQLException, NamingException {
-        List<Promocao> ret = new ArrayList<>();
+    public List<PromocaoConsulta> listarTodasPromocoesByHotel(String ID) throws SQLException, NamingException {
+        List<PromocaoConsulta> ret = new ArrayList<>();
         try (Connection con = dataSource.getConnection();
-                PreparedStatement ps = con.prepareStatement(LISTAR_PROMOCAO_SQL)) {
-
+                PreparedStatement ps = con.prepareStatement(LISTAR_PROMOCAO_SQL_BY_HOTEL)) {
+            
+            ps.setString(1, ID);
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
+                    PromocaoConsulta proConsulta = new PromocaoConsulta();
                     Promocao promocao = new Promocao();
-                    
-                    //(url, preco, dataInicial, dataFinal, hotel)
+                    Site site = new Site();
+                    Hotel hotel = new Hotel();
+                                  
                     promocao.setId(rs.getInt("promocaoId"));
-                    promocao.setSite(rs.getInt("siteID"));
-                    promocao.setHotel(rs.getInt("hotelId"));
                     promocao.setPreco(rs.getFloat("preco"));
                     promocao.setDataInicial(rs.getDate("dataInicial"));
                     promocao.setDataFinal(rs.getDate("dataInicial"));
                     
-                    ret.add(promocao);
+                    site.setNome(rs.getString("siteNome"));
+                    site.setUrl(rs.getString("siteURL"));
+                    site.setTelefone(rs.getString("siteTelefone"));
+                    
+                    hotel.setNome(rs.getString("hotelNome"));
+                    hotel.setCidade(rs.getString("hotelCidade"));
+                    
+                    proConsulta.setHotel(hotel);
+                    proConsulta.setPromocao(promocao);
+                    proConsulta.setSite(site);
+                    
+                    ret.add(proConsulta);
+                }
+            }
+        }
+        return ret;
+    }
+    
+    public List<PromocaoConsulta> listarTodasPromocoesBySite(String ID) throws SQLException, NamingException {
+        List<PromocaoConsulta> ret = new ArrayList<>();
+        try (Connection con = dataSource.getConnection();
+                PreparedStatement ps = con.prepareStatement(LISTAR_PROMOCAO_SQL_BY_SITE)) {
+            
+            ps.setString(1, ID);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    PromocaoConsulta proConsulta = new PromocaoConsulta();
+                    Promocao promocao = new Promocao();
+                    Site site = new Site();
+                    Hotel hotel = new Hotel();
+                                  
+                    promocao.setId(rs.getInt("promocaoId"));
+                    promocao.setPreco(rs.getFloat("preco"));
+                    promocao.setDataInicial(rs.getDate("dataInicial"));
+                    promocao.setDataFinal(rs.getDate("dataInicial"));
+                    
+                    site.setNome(rs.getString("siteNome"));
+                    site.setUrl(rs.getString("siteURL"));
+                    site.setTelefone(rs.getString("siteTelefone"));
+                    
+                    hotel.setNome(rs.getString("hotelNome"));
+                    hotel.setCidade(rs.getString("hotelCidade"));
+                    
+                    proConsulta.setHotel(hotel);
+                    proConsulta.setPromocao(promocao);
+                    proConsulta.setSite(site);
+                    
+                    ret.add(proConsulta);
                 }
             }
         }

@@ -21,7 +21,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 import java.util.List;
-import org.apache.commons.beanutils.BeanUtils;
 
 @WebServlet(name = "GravarPromocaoServlet", urlPatterns = {"/GravarPromocaoServlet"})
 public class GravarPromocaoServlet extends HttpServlet {
@@ -41,12 +40,15 @@ public class GravarPromocaoServlet extends HttpServlet {
             promocao.setHotel(Integer.valueOf(request.getParameter("hotel")));
             promocao.setSite(Integer.valueOf(request.getParameter("site")));
             
-            if (request.getParameter("preco").matches("[a-zA-Z]*"))
-                mensagens.add("Preço não pode conter letras!");    
-            else if (request.getParameter("preco").isEmpty())
-                mensagens.add("Preço não pode ser vazio!");      
-            else
-                promocao.setPreco(Float.valueOf(request.getParameter("preco")));
+            String preco = request.getParameter("preco");
+            if (!preco.matches("[0-9]+((\\,|\\.)[0-9][0-9])?"))
+                mensagens.add("Preço deve ser na forma NN,NN!");    
+            else if (preco.isEmpty())
+                mensagens.add("Preço não pode ser vazio!");
+            else{
+                preco = preco.replace(',', '.');
+                promocao.setPreco(Float.valueOf(preco));
+            }
             
             if (!request.getParameter("dataInicial").isEmpty()){
                 promocao.setDataInicial(Date.valueOf(request.getParameter("dataInicial")));
@@ -70,7 +72,7 @@ public class GravarPromocaoServlet extends HttpServlet {
                 promocaoDao.gravarPromocao(promocao);
                 String mem = "Dados Salvos: <br/>";
                 mem = mem + "Hotel: " + request.getParameter("hotelNome") + "<br/>";
-                mem = mem + "Preço: " + promocao.getPrecoMascara() + "<br/>";
+                mem = mem + "Preço: " + promocao.getPreco()+ " R$ <br/>";
                 mem = mem + "Data Inicial: " + promocao.getDataInicial() + "<br/>";
                 mem = mem + "Data Final: " + promocao.getDataFinal() + "<br/>";
                 request.setAttribute("mensagens", mem);                

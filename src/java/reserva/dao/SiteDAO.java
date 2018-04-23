@@ -21,6 +21,12 @@ public class SiteDAO {
             + " id, nome"
             + " from Site";
     
+    private final static String LOGIN_SITE_SQL = "select"
+            + " id, url, nome, telefone"
+            + " from site "
+            + " where url = ? AND"
+            + " senha = ? ";
+    
     DataSource dataSource;
 
     public SiteDAO(DataSource dataSource) {
@@ -60,5 +66,23 @@ public class SiteDAO {
             }
         }
         return ret;
+    }
+        
+        public Site loginSite(String url, String senha) throws SQLException, NamingException {
+        try (Connection con = dataSource.getConnection();
+                PreparedStatement ps = con.prepareStatement(LOGIN_SITE_SQL)) {
+            ps.setString(1, url);
+            ps.setString(2, senha);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                rs.next();
+                Site site = new Site();
+                site.setId(rs.getInt("id"));
+                site.setUrl(rs.getString("url"));
+                site.setNome(rs.getString("nome"));
+                site.setTelefone(rs.getString("telefone"));
+                return site;
+            }catch(Exception e){return null;}
+        }
     }
 }

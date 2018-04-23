@@ -8,8 +8,6 @@ import java.util.List;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 import reserva.dao.PromocaoDAO;
-import java.text.NumberFormat;
-
 
 public class Promocao {
     private int id;
@@ -31,12 +29,6 @@ public class Promocao {
 
     public float getPreco() { return preco; }
     
-    public String getPrecoMascara() { 
-        NumberFormat nf = NumberFormat.getInstance();
-        nf.setMaximumFractionDigits(2);//seto o máximo de casas decimais para 2
-        return nf.format(preco);
-    }
-
     public void setPreco(float preço) { this.preco = preço; }
 
     public Date getDataInicial() { return dataInicial; }

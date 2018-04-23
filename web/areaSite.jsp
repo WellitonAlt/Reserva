@@ -7,10 +7,9 @@
         <title>TreisVaga</title>      
     </head>
     <body>
-        <h1>Area de Hotel - ${requestScope.hotel.nome}  </h1>
-        <h3>Menu: </h3>
-        <a href="CadastroPromocaoServlet?hotel=${requestScope.hotel.id}">Cadastro Promocao</a><br/>        
-        <a href="ListarPromocaoServlet?tipo=1&ID=${requestScope.hotel.id}">Listar Promocao</a><br/>
+        <h1>Area de Site - ${requestScope.site.nome}  </h1>
+        <h3>Menu: </h3>       
+        <a href="ListarPromocaoServlet?tipo=2&ID=${requestScope.site.id}">Listar Promocao</a><br/>
         <a href="index.jsp">Sair</a><br/>
         <hr>
     </body>

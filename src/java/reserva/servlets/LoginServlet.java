@@ -3,6 +3,8 @@ package reserva.servlets;
 import reserva.Login;
 import reserva.dao.HotelDAO;
 import reserva.Hotel;
+import reserva.dao.SiteDAO;
+import reserva.Site;
 import java.io.IOException;
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
@@ -26,6 +28,8 @@ public class LoginServlet extends HttpServlet {
            Login login = new Login();
            HotelDAO hotelDao = new HotelDAO(dataSource);
            Hotel hotel = new Hotel();
+           SiteDAO siteDao = new SiteDAO(dataSource);
+           Site site = new Site();
            BeanUtils.populate(login, request.getParameterMap());
            request.getSession().setAttribute("login", login);
            
@@ -49,9 +53,16 @@ public class LoginServlet extends HttpServlet {
                     request.getRequestDispatcher("login.jsp").forward(request, response);
                }                   
            }else{
-               String mensagem = "ESSA MERDA NAO FUNCIONA AINDA";
-               request.setAttribute("mensagem", mensagem);
-               request.getRequestDispatcher("login.jsp").forward(request, response);
+               site = siteDao.loginSite(login.getUsuario(), login.getSenha()); 
+               if(hotel != null){
+                   request.setAttribute("site", site);
+                   request.getRequestDispatcher("areaSite.jsp").forward(request, response);
+               }
+               else{
+                    String mensagem = "Usuario ou Senha de Hotel são Invalidos!!!";
+                    request.setAttribute("mensagem", mensagem);
+                    request.getRequestDispatcher("login.jsp").forward(request, response);
+               }                   
            }
            
                
