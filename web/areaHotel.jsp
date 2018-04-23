@@ -9,8 +9,8 @@
     <body>
         <h1>Area de Hotel - ${requestScope.hotel.nome}  </h1>
         <h3>Menu: </h3>
-        <a href="CadastroPromocaoServlet?hotel=${requestScope.hotel.id}">Cadastro Promocao</a><br/>        
-        <a href="ListarPromocaoServlet?tipo=1&ID=${requestScope.hotel.id}">Listar Promocao</a><br/>
+        <a href="CadastroPromocaoServlet?hotel=${requestScope.hotel.id}">Cadastrar Promoção</a><br/>        
+        <a href="ListarPromocaoServlet?tipo=1&ID=${requestScope.hotel.id}">Listar Promoções</a><br/>
         <a href="index.jsp">Sair</a><br/>
         <hr>
     </body>

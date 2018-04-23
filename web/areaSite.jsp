@@ -7,9 +7,9 @@
         <title>TreisVaga</title>      
     </head>
     <body>
-        <h1>Area de Site - ${requestScope.site.nome}  </h1>
+        <h1>Área de Site - ${requestScope.site.nome}  </h1>
         <h3>Menu: </h3>       
-        <a href="ListarPromocaoServlet?tipo=2&ID=${requestScope.site.id}">Listar Promocao</a><br/>
+        <a href="ListarPromocaoServlet?tipo=2&ID=${requestScope.site.id}">Listar Promoções</a><br/>
         <a href="index.jsp">Sair</a><br/>
         <hr>
     </body>

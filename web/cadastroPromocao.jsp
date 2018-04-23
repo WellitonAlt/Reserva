@@ -10,8 +10,8 @@
     <body>
         <h1>Promoção - ${requestScope.hotel.nome}</h1>
         <h3>Menu:</h3>
-        <a href="index.jsp">Pagina Inicial</a><br/>
-        <a href="javascript:history.go(-1)">Area de Hotel</a><br/>
+        <a href="index.jsp">Página Inicial</a><br/>
+        <a href="javascript:history.go(-1)">Área de Hotel</a><br/>
         <a href="login.jsp">Sair</a><br/> 
         <hr>
         <c:if test="${!empty requestScope.mensagens}">
@@ -33,7 +33,7 @@
             <input name="hotelNome" type="hidden" value="${requestScope.hotel.nome}" />
             Preço:<input name="preco" type="text" value="${sessionScope.Promocao.preco}" /> <br />
             Data Inicial:<input name="dataInicial" type="Date" value="${sessionScope.Promocao.dataInicial}" /> <br />
-            Data Finnal:<input name="dataFinal" type="Date" value="${sessionScope.Promocao.dataFinal}" /> <br />
+            Data Final:<input name="dataFinal" type="Date" value="${sessionScope.Promocao.dataFinal}" /> <br />
             <input type="submit" value="Cadastrar"/>
         </form>
     </body>

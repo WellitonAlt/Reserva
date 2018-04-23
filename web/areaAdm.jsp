@@ -7,10 +7,10 @@
         <title>TreisVaga</title>      
     </head>
     <body>
-        <h1>Area de Administração - root </h1>
+        <h1>Área de Administração - root </h1>
         <h3>Menu:</h3>
-        <a href="cadastroSite.jsp">Cadastro Site de Reserva</a><br/>        
-        <a href="cadastroHotel.jsp">Cadastro Hotel</a><br/>
+        <a href="cadastroSite.jsp">Cadastrar Site de Reservas</a><br/>        
+        <a href="cadastroHotel.jsp">Cadastrar Hotel</a><br/>
         <a href="index.jsp">Sair</a><br/>
         <hr>
     </body>
