@@ -49,7 +49,7 @@
             <form class="col s6" action="GravarPromocaoServlet" method="post">
               <div class="row"> 
                 <div class="input-field col s12">
-                  <select class="browser-default">
+                  <select name="site" class="browser-default">
                     <option value="" disabled="disabled" selected="selected">Site</option>
                     <c:forEach items="${requestScope.sites}" var="site">
                         <option value="${site.id}">${site.nome}</option>   

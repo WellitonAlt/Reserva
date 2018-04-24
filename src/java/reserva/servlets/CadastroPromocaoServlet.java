@@ -39,8 +39,7 @@ public class CadastroPromocaoServlet extends HttpServlet {
         
         try {
             hotel = hotelDao.buscarHotel(Integer.valueOf(hotelId));
-        }catch(Exception e){
-            e.printStackTrace();
+        }catch(NumberFormatException | SQLException | NamingException e){
             request.setAttribute("mensagem", hotel.getNome());
             request.getRequestDispatcher("erro.jsp").forward(request, response);
         }       

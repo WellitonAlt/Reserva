@@ -77,7 +77,7 @@ public class GravarPromocaoServlet extends HttpServlet {
                 promocaoDao.gravarPromocao(promocao);
                 String mem = "Dados Salvos: <br/>";
                 mem = mem + "Hotel: " + request.getParameter("hotelNome") + "<br/>";
-                mem = mem + "Preço: " + promocao.getPreco()+ " R$ <br/>";
+                mem = mem + "Preço: R$" + promocao.getPreco()+ "<br/>";
                 mem = mem + "Data Inicial: " + promocao.getDataInicial() + "<br/>";
                 mem = mem + "Data Final: " + promocao.getDataFinal() + "<br/>";
                 request.setAttribute("salvou", mem);                
