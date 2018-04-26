@@ -52,7 +52,7 @@ public class GravarHotelServlet extends HttpServlet {
                 request.getRequestDispatcher("cadastroHotel.jsp").forward(request, response);
             }
    
-        } catch (IOException | IllegalAccessException | InvocationTargetException | SQLException | NamingException | ServletException ex) {
+        } catch (NullPointerException | IOException | IllegalAccessException | InvocationTargetException | SQLException | NamingException | ServletException ex) {
             request.setAttribute("mensagem", ex.getLocalizedMessage());
             request.getRequestDispatcher("erro.jsp").forward(request, response);
         }

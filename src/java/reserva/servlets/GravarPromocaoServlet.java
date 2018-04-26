@@ -36,8 +36,21 @@ public class GravarPromocaoServlet extends HttpServlet {
         
         try {
             List<String> mensagens = new ArrayList<>();
-            promocao.setHotel(Integer.valueOf(request.getParameter("hotel")));
-            promocao.setSite(Integer.valueOf(request.getParameter("site")));
+            
+            if(!request.getParameter("hotel").isEmpty())
+                promocao.setHotel(Integer.valueOf(request.getParameter("hotel")));
+            else{
+                request.setAttribute("mensagem", "Erro inesperado");
+                request.getRequestDispatcher("erro.jsp").forward(request, response);
+            }
+            
+            if(!request.getParameter("site").isEmpty())
+                promocao.setSite(Integer.valueOf(request.getParameter("site")));
+            else{
+                request.setAttribute("mensagem", "Erro inesperado");
+                request.getRequestDispatcher("erro.jsp").forward(request, response);
+            }
+            
             
             String preco = request.getParameter("preco");
             if (!preco.matches("[0-9]+((\\,|\\.)[0-9][0-9])?"))
@@ -69,7 +82,6 @@ public class GravarPromocaoServlet extends HttpServlet {
                 if(promocao.getDataFinal().before(promocao.getDataInicial()))
                     mensagens.add("A Data Final não pode ser anterior à Data Inicial!");
             }
-            
             request.getSession().setAttribute("promocao", promocao);            
             String aux = "CadastroPromocaoServlet?hotel=" + request.getParameter("hotel");        
             
@@ -86,8 +98,8 @@ public class GravarPromocaoServlet extends HttpServlet {
                 request.setAttribute("mensagens", mensagens);
                 request.getRequestDispatcher(aux).forward(request, response);
             }
-        } catch (IOException | SQLException | NamingException | ServletException ex) {
-            request.setAttribute("mensagem", ex.getLocalizedMessage());
+        } catch ( IOException | SQLException | NamingException | ServletException ex) {
+            request.setAttribute("mensagem", "Erro 500, clique no botão voltar para continuar");
             request.getRequestDispatcher("erro.jsp").forward(request, response);
         }
     }

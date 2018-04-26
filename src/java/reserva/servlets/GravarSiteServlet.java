@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package reserva.servlets;
 
 import reserva.Site;
@@ -21,10 +16,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 import org.apache.commons.beanutils.BeanUtils;
 
-/**
- *
- * @author etoal
- */
 @WebServlet(name = "GravarSiteServlet", urlPatterns = {"/GravarSiteServlet"})
 public class GravarSiteServlet extends HttpServlet {
         
@@ -58,7 +49,7 @@ public class GravarSiteServlet extends HttpServlet {
             }
             
             
-        } catch (IOException | IllegalAccessException | InvocationTargetException | SQLException | NamingException | ServletException ex) {
+        } catch (NullPointerException | IOException | IllegalAccessException | InvocationTargetException | SQLException | NamingException | ServletException ex) {
             request.setAttribute("mensagem", ex.getLocalizedMessage());
             request.getRequestDispatcher("erro.jsp").forward(request, response);
         }

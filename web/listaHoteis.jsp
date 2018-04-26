@@ -25,30 +25,26 @@
         </div>
         
         <div class="container">
-            <center>
-                <h4>Lista de Hotéis</h4>
-            </center>
-        </div>
-        
-        <center>
-        <div class="container center">
-            <form class="col s6" action="ListaHoteisServlet" method="post">
+            <h4>Lista de Hotéis</h4>             
+            <form class="col s4" action="ListaHoteisServlet" method="post">
               <div class="row">
-                <div class="input-field col s6">
+                <div class="input-field col s4">
                   <input name="cidade" type="text" value="" />
                   <label for="cidade">Cidade</label>
                 </div>
-                <div class="input-field col s6">
+                <div class="input-field col s4">
                   <a class="waves-effect waves-light btn indigo">
                       <input type="submit" value="Buscar"/>
                   </a>
                 </div>
               </div>
-            </form>        
-        </center>
+            </form>          
+        </div>
+     
+            
         <div class="container">
             <c:if test="${empty requestScope.hoteis}">
-               Não há Hoteis!
+                <h5> Não há Hoteis! </h5>
             </c:if>
             <c:if test="${!empty requestScope.hoteis}">        
                 <table>
@@ -67,6 +63,7 @@
                 </table>
             </c:if>
         </div>
+                
         <div class="container">
             <footer class="page-footer indigo">
               <div class="footer-copyright">

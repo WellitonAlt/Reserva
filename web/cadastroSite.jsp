@@ -16,8 +16,7 @@
             <nav>
               <div class="nav-wrapper indigo">
                 <a href="#" class="brand-logo"><img class="materialboxed" width="280" src="img/TreisVaGa.png" ></a>
-                <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="index.jsp">Página Inicial</a></li>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">      
                     <li><a href="areaAdm.jsp">Área de Administrador</a></li>
                     <li><a href="login.jsp">Sair</a></li>
                 </ul>
@@ -49,7 +48,7 @@
             <form class="col s6" action="GravarSiteServlet" method="post">
               <div class="row">
                 <div class="input-field col s6">
-                   <input name="url" type="text" value="${sessionScope.Site.url}"/>
+                  <input name="url" type="text" value="${sessionScope.Site.url}">
                   <label for="url">URL</label>
                 </div>
                 <div class="input-field col s6">
@@ -59,11 +58,11 @@
               </div>
               <div class="row">
                 <div class="input-field col s6">
-                   <input name="nome" type="text" value= "${sessionScope.Site.nome}" />  
+                   <input name="nome" type="text" value= "${sessionScope.Site.nome}" >  
                   <label for="nome">Nome</label>
                 </div>
                 <div class="input-field col s6">
-                  <input name="telefone" type="text" value="${sessionScope.Site.Telefone}" /> 
+                  <input name="telefone" type="text" value="${sessionScope.Site.Telefone}" > 
                   <label for="telefone">Telefone</label>
                 </div>
               </div>

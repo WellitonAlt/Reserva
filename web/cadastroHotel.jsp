@@ -19,7 +19,6 @@
               <div class="nav-wrapper indigo">
                 <a href="#" class="brand-logo"><img class="materialboxed" width="280" src="img/TreisVaGa.png" ></a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="index.jsp">Página Inicial</a></li>
                     <li><a href="areaAdm.jsp">Área de Administrador</a></li>
                     <li><a href="login.jsp">Sair</a></li> 
                 </ul>

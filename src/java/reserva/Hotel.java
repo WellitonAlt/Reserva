@@ -41,26 +41,29 @@ public class Hotel {
     
     public List<String> validar() {
         List<String> mensagens = new ArrayList<>();
-               
-        if (cnpj.trim().length() == 0) {
-            mensagens.add("CNPJ não pode ser vazio!");
+        try{
+            if (cnpj.trim().length() == 0) {
+                mensagens.add("CNPJ não pode ser vazio!");
+            }
+            if (cnpj.length() < 14 || cnpj.length() > 15 ){
+                mensagens.add("CNPJ deve conter 14 dígitos!. Ex: 72629140000134");       
+            }
+            if (cnpj.matches("[a-zA-Z]*")) {
+                mensagens.add("CNPJ não deve conter letras!");
+            }
+            if (nome.trim().length() == 0) {
+                mensagens.add("Nome não pode ser vazio!");
+            }
+            if (senha.trim().length() == 0) {
+                mensagens.add("Senha não pode ser vazio!");
+            }
+            if (cidade.trim().length() == 0) {
+                mensagens.add("Cidade não pode ser vazio!");
+            }
+
+            return (mensagens.isEmpty() ? null : mensagens);
+        }catch(NullPointerException e){
+            return null;
         }
-        if (cnpj.length() < 14 || cnpj.length() > 15 ){
-            mensagens.add("CNPJ deve conter 14 dígitos!. Ex: 72629140000134");       
-        }
-        if (cnpj.matches("[a-zA-Z]*")) {
-            mensagens.add("CNPJ não deve conter letras!");
-        }
-        if (nome.trim().length() == 0) {
-            mensagens.add("Nome não pode ser vazio!");
-        }
-        if (senha.trim().length() == 0) {
-            mensagens.add("Senha não pode ser vazio!");
-        }
-        if (cidade.trim().length() == 0) {
-            mensagens.add("Cidade não pode ser vazio!");
-        }
-        
-        return (mensagens.isEmpty() ? null : mensagens);
     }   
 }

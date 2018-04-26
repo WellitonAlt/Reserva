@@ -17,8 +17,7 @@
               <div class="nav-wrapper indigo">
                 <a href="#" class="brand-logo"><img class="materialboxed" width="280" src="img/TreisVaGa.png" ></a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="index.jsp">Página Inicial</a></li>
-                    <li><a href="javascript:history.go(-1)">Área de Hotel</a></li>
+                    <li><a href="Login">Área de Hotel</a></li>
                     <li><a href="login.jsp">Sair</a></li>
                 </ul>
               </div>
@@ -47,22 +46,24 @@
         <div class="container center">
             <center>
             <form class="col s6" action="GravarPromocaoServlet" method="post">
-              <div class="row"> 
-                <div class="input-field col s12">
-                  <select name="site" class="browser-default">
-                    <option value="" disabled="disabled" selected="selected">Site</option>
+              <div class="row">  
+                <div class="input-field col s1">
+                   <label for="site">Site</label>                 
+                </div>  
+                <div class="input-field col s6">                
+                  <select class="browser-default" name="site">
                     <c:forEach items="${requestScope.sites}" var="site">
                         <option value="${site.id}">${site.nome}</option>   
-                    </c:forEach>                  
+                    </c:forEach>
                   </select>
                 </div>
-              </div>
-              <div class="row">
-                <input name="hotel" type="hidden" value="${requestScope.hotel.id}" />
-                <input name="hotelNome" type="hidden" value="${requestScope.hotel.nome}" />
-                <div class="input-field col s6">
-                  <input name="preco" type="text" value="${sessionScope.Promocao.preco}" /> 
-                  <label for="preco">Preço</label>
+                <div class="input-field col s4">
+                  <input name="hotel" type="text" value="${requestScope.hotel.id}" />
+                  <input name="hotelNome" type="text" value="${requestScope.hotel.nome}" />
+                  <div class="input-field col s6">
+                    <input name="preco" type="text" value="${sessionScope.Promocao.preco}" /> 
+                    <label for="preco">Preço</label>
+                  </div>
                 </div>
               </div>
               <div class="row">

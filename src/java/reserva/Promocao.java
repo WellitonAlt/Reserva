@@ -1,13 +1,7 @@
 package reserva;
 
 
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
-import javax.naming.NamingException;
-import javax.sql.DataSource;
-import reserva.dao.PromocaoDAO;
 
 public class Promocao {
     private int id;

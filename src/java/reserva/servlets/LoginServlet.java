@@ -69,8 +69,8 @@ public class LoginServlet extends HttpServlet {
            }
            
                
-        }catch (IOException | IllegalAccessException | InvocationTargetException | SQLException | NamingException | ServletException ex) {
-            request.setAttribute("mensagem", ex.getLocalizedMessage());
+        }catch (NullPointerException | IOException | IllegalAccessException | InvocationTargetException | SQLException | NamingException | ServletException ex) {
+            request.setAttribute("mensagem", "Erro 500, clique no botão voltar para continuar");
             request.getRequestDispatcher("erro.jsp").forward(request, response);
         }
     }
