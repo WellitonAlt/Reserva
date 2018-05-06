@@ -25,7 +25,7 @@
             <center>
                 <h4>Opa, parece que ocorreu um problema</h4>          
                 <img class="materialboxed" width="650" src="img/srTri.jpg" >  <br/>
-                <h5>Descrição: ${mensagem}</h5> 
+                     <h5>Descrição: ${mensagem}</h5> 
             </center>
         </div>
             

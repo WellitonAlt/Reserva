@@ -20,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 import org.apache.commons.beanutils.BeanUtils;
+import reserva.dao.ErroDAO;
 
 @WebServlet(name = "GravarHotelServlet", urlPatterns = {"/GravarHotelServlet"})
 public class GravarHotelServlet extends HttpServlet {
@@ -53,7 +54,11 @@ public class GravarHotelServlet extends HttpServlet {
             }
    
         } catch (NullPointerException | IOException | IllegalAccessException | InvocationTargetException | SQLException | NamingException | ServletException ex) {
-            request.setAttribute("mensagem", ex.getLocalizedMessage());
+            String mensagem = ex.getLocalizedMessage();
+            if (mensagem == null)
+                mensagem = "Referência inexistente";
+            ErroDAO erro = new ErroDAO(dataSource, mensagem);             
+            request.setAttribute("mensagem", mensagem);
             request.getRequestDispatcher("erro.jsp").forward(request, response);
         }
     }

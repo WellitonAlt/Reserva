@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package reserva.servlets;
 
 import reserva.dao.SiteDAO;
@@ -20,6 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
+import reserva.dao.ErroDAO;
 
 
 
@@ -32,28 +29,21 @@ public class CadastroPromocaoServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String hotelId = request.getParameter("hotel");
         SiteDAO siteDao = new SiteDAO(dataSource);
-        HotelDAO hotelDao = new HotelDAO(dataSource);
-        Hotel hotel = new Hotel();
-        
-        try {
-            hotel = hotelDao.buscarHotel(Integer.valueOf(hotelId));
-        }catch(NumberFormatException | SQLException | NamingException e){
-            request.setAttribute("mensagem", hotel.getNome());
-            request.getRequestDispatcher("erro.jsp").forward(request, response);
-        }       
-       
+   
         List<Site> sites = null;
         try {
             sites = siteDao.listarTodasSites();
             if (sites != null) {
                 request.setAttribute("sites", sites);                
-                request.setAttribute("hotel", hotel);
                 request.getRequestDispatcher("cadastroPromocao.jsp").forward(request, response);
             }            
         } catch (IOException | SQLException | NamingException | ServletException e) {
-            request.setAttribute("mensagem", e.getLocalizedMessage());
+            String mensagem = e.getLocalizedMessage();
+            if (mensagem == null)
+                mensagem = "Referência inexistente";
+            ErroDAO erro = new ErroDAO(dataSource, mensagem);            
+            request.setAttribute("mensagem", mensagem);
             request.getRequestDispatcher("erro.jsp").forward(request, response);
         }
     }

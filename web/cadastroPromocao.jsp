@@ -12,12 +12,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
+        <c:if test="${empty hotel}" >
+          <c:redirect url="index.jsp"/>  
+        </c:if>
         <div class="container">
             <nav>
               <div class="nav-wrapper indigo">
                 <a href="#" class="brand-logo"><img class="materialboxed" width="280" src="img/TreisVaGa.png" ></a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="Login">Área de Hotel</a></li>
+                    <li><a href="areaHotel.jsp">Área de Hotel</a></li>
                     <li><a href="login.jsp">Sair</a></li>
                 </ul>
               </div>
@@ -58,8 +61,8 @@
                   </select>
                 </div>
                 <div class="input-field col s4">
-                  <input name="hotel" type="text" value="${requestScope.hotel.id}" />
-                  <input name="hotelNome" type="text" value="${requestScope.hotel.nome}" />
+                  <input name="hotel" type="hidden" value="${hotel.id}" />
+                  <input name="hotelNome" type="hidden" value="${hotel.nome}" />
                   <div class="input-field col s6">
                     <input name="preco" type="text" value="${sessionScope.Promocao.preco}" /> 
                     <label for="preco">Preço</label>

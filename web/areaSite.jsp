@@ -11,6 +11,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
+        <c:if test="${empty requestScope.site.id}" >
+          <c:redirect url="index.jsp"/>  
+        </c:if>
         <div class="container">
             <nav>
               <div class="nav-wrapper indigo">

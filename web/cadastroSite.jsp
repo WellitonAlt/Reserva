@@ -12,12 +12,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
+        <c:if test="${empty adm}" >
+          <c:redirect url="index.jsp"/>  
+        </c:if>        
         <div class="container">
             <nav>
               <div class="nav-wrapper indigo">
                 <a href="#" class="brand-logo"><img class="materialboxed" width="280" src="img/TreisVaGa.png" ></a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">      
-                    <li><a href="areaAdm.jsp">Área de Administrador</a></li>
+                    <li><a href="areaAdm.jsp?adm=root">Área de Administrador</a></li>
                     <li><a href="login.jsp">Sair</a></li>
                 </ul>
               </div>

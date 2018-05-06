@@ -17,7 +17,6 @@
               <div class="nav-wrapper indigo">
                 <a href="#" class="brand-logo"><img class="materialboxed" width="280" src="img/TreisVaGa.png" ></a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="index.jsp">Página Inicial</a></li>
                     <li><a href="javascript:history.go(-1)">Voltar</a></li>
                     <li><a href="login.jsp">Sair</a></li>
                 </ul>
@@ -32,10 +31,10 @@
         </div>
         
         <div class="container">  
-            <c:if test="${empty requestScope.promocoes}">
+            <c:if test="${empty promocoes}">
                 Não há Promoções!
             </c:if>
-            <c:if test="${!empty requestScope.promocoes}">        
+            <c:if test="${!empty promocoes}">        
                 <table border = '1'>
                     <tr>                   
                         <th>Promoção ID</th>

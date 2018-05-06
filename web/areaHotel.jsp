@@ -1,6 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page import="reserva.Hotel" %>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -11,13 +12,16 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
+        <c:if test="${empty hotel}" >
+          <c:redirect url="index.jsp"/>  
+        </c:if>
         <div class="container">
             <nav>
               <div class="nav-wrapper indigo">
                 <a href="#" class="brand-logo"><img class="materialboxed" width="280" src="img/TreisVaGa.png" ></a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li><a href="CadastroPromocaoServlet?hotel=${requestScope.hotel.id}">Cadastrar Promoção</a></li>        
-                    <li><a href="ListarPromocaoServlet?tipo=1&ID=${requestScope.hotel.id}">Listar Promoções</a></li>
+                    <li><a href="CadastroPromocaoServlet">Cadastrar Promoção</a></li>        
+                    <li><a href="ListarPromocaoServlet?tipo=1&ID=${hotel.id}">Listar Promoções</a></li>
                     <li><a href="index.jsp">Sair</a></li>
                 </ul>
               </div>
@@ -25,7 +29,7 @@
         </div>
         <div class="container">
             <center>
-                <h4>Área de Hotel - ${requestScope.hotel.nome}</h4>    
+                <h4>Área de Hotel - ${hotel.nome}</h4>    
                 <img class="materialboxed" width="650" src="img/hotel.jpg" >  <br/>
             </center>
         </div>

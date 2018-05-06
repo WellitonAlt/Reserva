@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
+import reserva.dao.ErroDAO;
 
 
 @WebServlet(name = "ListaHoteisServlet", urlPatterns = {"/ListaHoteisServlet"})
@@ -38,8 +39,12 @@ public class ListaHoteisServlet extends HttpServlet {
             
             request.setAttribute("hoteis", hoteis);
             request.getRequestDispatcher("listaHoteis.jsp").forward(request, response);
-        } catch (IOException | SQLException | NamingException | ServletException e) {
-            request.setAttribute("mensagem", e.getLocalizedMessage());
+        } catch (NullPointerException | IOException | SQLException | NamingException | ServletException e) {
+            String mensagem = e.getLocalizedMessage();
+            if (mensagem == null)
+                mensagem = "Referência inexistente";
+            ErroDAO erro = new ErroDAO(dataSource, mensagem);
+            request.setAttribute("mensagem", mensagem);
             request.getRequestDispatcher("erro.jsp").forward(request, response);
         }
     }

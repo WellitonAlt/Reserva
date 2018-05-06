@@ -17,12 +17,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 import org.apache.commons.beanutils.BeanUtils;
+import reserva.dao.ErroDAO;
 
 @WebServlet(name = "LoginServlet", urlPatterns = {"/LoginServlet"})
 public class LoginServlet extends HttpServlet {
     
     @Resource(name = "jdbc/ReservaDBLocal")
     DataSource dataSource;
+    
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -34,10 +36,12 @@ public class LoginServlet extends HttpServlet {
            SiteDAO siteDao = new SiteDAO(dataSource);
            Site site = new Site();
            BeanUtils.populate(login, request.getParameterMap());
-           request.getSession().setAttribute("login", login);
+           request.getSession().setAttribute("login", login);           
+           
            
            if (login.getTipo().equals("adm")){
                if(login.getUsuario().equals("root") && login.getSenha().equals("root")){
+                    request.getSession().setAttribute("adm", "root");
                     request.getRequestDispatcher("areaAdm.jsp").forward(request, response);
                }else{
                     String mensagem = "Usuario ou Senha de Administrador são Invalidos!!!";
@@ -47,7 +51,7 @@ public class LoginServlet extends HttpServlet {
            }else if (login.getTipo().equals("hotel")){
                hotel = hotelDao.loginHotel(login.getUsuario().replace(".","").replace("/","").replace("-",""), login.getSenha()); 
                if(hotel != null){
-                   request.setAttribute("hotel", hotel);
+                   request.getSession().setAttribute("hotel", hotel);
                    request.getRequestDispatcher("areaHotel.jsp").forward(request, response);
                }
                else{
@@ -70,7 +74,11 @@ public class LoginServlet extends HttpServlet {
            
                
         }catch (NullPointerException | IOException | IllegalAccessException | InvocationTargetException | SQLException | NamingException | ServletException ex) {
-            request.setAttribute("mensagem", "Erro 500, clique no botão voltar para continuar");
+            String mensagem = ex.getLocalizedMessage();
+            if (mensagem == null)
+                mensagem = "Referência inexistente";
+            ErroDAO erro = new ErroDAO(dataSource, mensagem);
+            request.setAttribute("mensagem", mensagem);
             request.getRequestDispatcher("erro.jsp").forward(request, response);
         }
     }

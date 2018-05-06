@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package reserva.servlets;
 
 import reserva.Promocao;
@@ -20,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 import java.util.List;
+import reserva.dao.ErroDAO;
 
 @WebServlet(name = "GravarPromocaoServlet", urlPatterns = {"/GravarPromocaoServlet"})
 public class GravarPromocaoServlet extends HttpServlet {
@@ -98,8 +95,12 @@ public class GravarPromocaoServlet extends HttpServlet {
                 request.setAttribute("mensagens", mensagens);
                 request.getRequestDispatcher(aux).forward(request, response);
             }
-        } catch ( IOException | SQLException | NamingException | ServletException ex) {
-            request.setAttribute("mensagem", "Erro 500, clique no botão voltar para continuar");
+        } catch ( NullPointerException | IOException | SQLException | NamingException | ServletException ex) {
+            String mensagem = ex.getLocalizedMessage();
+            if (mensagem == null)
+                mensagem = "Referência inexistente";
+            ErroDAO erro = new ErroDAO(dataSource, mensagem);            
+            request.setAttribute("mensagem", mensagem);
             request.getRequestDispatcher("erro.jsp").forward(request, response);
         }
     }
